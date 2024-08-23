@@ -2,6 +2,7 @@ package UserRegister
 
 import User "mymodule/User/Domain"
 
+
 type UserRegister struct {
 	repository User.UserRepository
 }
@@ -10,14 +11,14 @@ func Setup(repository User.UserRepository) UserRegister {
 	return UserRegister{repository: repository}
 }
 
-func (self UserRegister) Run(name, email string) error {
+func (self UserRegister) Run(id, name, email string) error {
 
-	var user, error = User.Create(name, email)
+	var user, error = User.Create(id, name, email)
 	if error != nil {
 		return error
 	}
 
-	error = self.repository.Save(user)
+	error = self.repository.Save(&user)
 	if error != nil {
 		return error
 	}

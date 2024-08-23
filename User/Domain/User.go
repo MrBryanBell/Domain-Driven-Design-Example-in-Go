@@ -23,11 +23,12 @@ import (
 )
 
 type User struct {
+	ID string
 	name  UserName.UserName
 	email UserEmail.UserEmail
 }
 
-func Create(name, email string) (User, error) {
+func Create(id, name, email string) (User, error) {
 
 	_name, error := UserName.New(name)
 	if error != nil {
@@ -40,8 +41,23 @@ func Create(name, email string) (User, error) {
 	}
 
 	return User{
+		ID: id,
 		name:  _name,
 		email: _email,
 	}, nil
 
+}
+
+func (user *User) UpdateEmail(newEmail string) (User, error) {
+	_newEmail, error := UserEmail.New(newEmail)
+
+	if error != nil {
+		return User{}, error
+	}
+
+	return User{
+		ID: user.ID,
+		name:  user.name,
+		email: _newEmail,
+	}, nil
 }
