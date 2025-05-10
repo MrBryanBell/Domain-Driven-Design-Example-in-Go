@@ -74,14 +74,12 @@ func AssertNot(actual any, expected any) {
 	}
 }
 
-
-/* LESSON: Al utilziar definición de Alias, 
+/* LESSON: Al utilziar definición de Alias,
 estamos hablando siempre de la misma estructura, solo que ahora
 podemos llamarle también con otro nombre (Alias). En el código de abajo,
 incluso añadí el método Price() únicamente al Alias de "Coursito", y para
 mi sopresa, también puedo fue añadido en el type original "Course".
 */
-
 
 type Course struct {
 	name  string
